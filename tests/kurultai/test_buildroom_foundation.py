@@ -521,3 +521,65 @@ def test_control_room_cron_fail_on_actionable_exit_code(tmp_path):
         "--fail-on-actionable",
     )
     assert result.returncode == 2
+
+
+
+def test_apply_kanban_drafts_dry_run_dedupes(tmp_path: Path) -> None:
+    drafts = tmp_path / "drafts.json"
+    state = tmp_path / "state.json"
+    ledger = tmp_path / "ledger.json"
+    write_json(drafts, {"drafts": [
+        {"title": "Review room", "metadata": {"attention_item_id": "same", "room_id": "demo-room", "severity": "high", "reason": "watch"}},
+        {"title": "Review room duplicate", "metadata": {"attention_item_id": "same", "room_id": "demo-room", "severity": "high", "reason": "watch"}},
+    ]})
+    result = run_script("tools/kurultai/buildroom/scripts/apply_kanban_drafts.py", "--drafts", str(drafts), "--state", str(state), "--ledger", str(ledger))
+    assert result.returncode == 0, result.stdout
+    payload = read_json(ledger)
+    assert payload["mode"] == "dry-run"
+    assert payload["summary"]["drafts"] == 2
+    assert payload["summary"]["unique"] == 1
+    assert payload["summary"]["new"] == 1
+
+
+def test_apply_kanban_drafts_apply_is_idempotent(tmp_path: Path) -> None:
+    import sqlite3
+    db = tmp_path / "kanban.db"
+    con = sqlite3.connect(db)
+    con.execute("CREATE TABLE tasks (id TEXT PRIMARY KEY, title TEXT NOT NULL, body TEXT, assignee TEXT, status TEXT NOT NULL, priority INTEGER DEFAULT 0, created_by TEXT, created_at INTEGER NOT NULL, started_at INTEGER, completed_at INTEGER, workspace_kind TEXT NOT NULL DEFAULT 'scratch', workspace_path TEXT, claim_lock TEXT, claim_expires INTEGER, tenant TEXT, result TEXT, idempotency_key TEXT, spawn_failures INTEGER NOT NULL DEFAULT 0, worker_pid INTEGER, last_spawn_error TEXT, max_runtime_seconds INTEGER, last_heartbeat_at INTEGER, current_run_id INTEGER, workflow_template_id TEXT, current_step_key TEXT, skills TEXT)")
+    con.execute("CREATE TABLE task_events (id INTEGER PRIMARY KEY AUTOINCREMENT, task_id TEXT NOT NULL, run_id INTEGER, kind TEXT NOT NULL, payload TEXT, created_at INTEGER NOT NULL)")
+    con.commit()
+    con.close()
+    drafts = tmp_path / "drafts.json"
+    state = tmp_path / "state.json"
+    ledger = tmp_path / "ledger.json"
+    write_json(drafts, {"drafts": [{"title": "Review room", "metadata": {"attention_item_id": "same", "room_id": "demo-room"}}]})
+    first = run_script("tools/kurultai/buildroom/scripts/apply_kanban_drafts.py", "--drafts", str(drafts), "--state", str(state), "--ledger", str(ledger), "--kanban-db", str(db), "--apply")
+    second = run_script("tools/kurultai/buildroom/scripts/apply_kanban_drafts.py", "--drafts", str(drafts), "--state", str(state), "--ledger", str(ledger), "--kanban-db", str(db), "--apply")
+    assert first.returncode == 0, first.stdout
+    assert second.returncode == 0, second.stdout
+    con = sqlite3.connect(db)
+    assert con.execute("select count(*) from tasks").fetchone()[0] == 1
+    assert con.execute("select count(*) from task_events").fetchone()[0] == 1
+    con.close()
+
+
+def test_retention_review_emits_non_destructive_followups(tmp_path: Path) -> None:
+    room = copy_demo_room(tmp_path, "retention-room")
+    retention = room / "retention" / "retention-review.json"
+    data = read_json(retention)
+    data["recommendation"] = "improve"
+    data["status"] = "pending"
+    write_json(retention, data)
+    output = tmp_path / "retention-items.json"
+    result = run_script("tools/kurultai/buildroom/scripts/retention_review.py", "--rooms", str(tmp_path), "--output", str(output))
+    assert result.returncode == 0, result.stdout
+    payload = read_json(output)
+    assert payload["summary"]["items"] == 1
+    assert payload["items"][0]["needs_receipt"] is True
+    assert payload["items"][0]["room_id"] == "retention-room"
+
+
+def test_buildroom_healthcheck_quick_mode_passes() -> None:
+    result = run_script("tools/kurultai/buildroom/scripts/buildroom_healthcheck.py", "--skip-pytest")
+    assert result.returncode == 0, result.stdout
+    assert "buildroom healthcheck: PASS" in result.stdout

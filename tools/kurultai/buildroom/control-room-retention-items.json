@@ -1,0 +1,31 @@
+{
+  "items": [
+    {
+      "id": "retention:2026-05-10-gkisokay-auto-think-auto-build",
+      "needs_receipt": true,
+      "next_action": "review retention recommendation and write receipt",
+      "receipt_template": "brain/receipts/kurultai/{date}-2026-05-10-gkisokay-auto-think-auto-build-retention-review.md",
+      "recommendation": "keep",
+      "room_id": "2026-05-10-gkisokay-auto-think-auto-build",
+      "severity": "medium",
+      "status": "pending",
+      "trust_state": "watch"
+    },
+    {
+      "id": "retention:demo-room",
+      "needs_receipt": true,
+      "next_action": "review retention recommendation and write receipt",
+      "receipt_template": "brain/receipts/kurultai/{date}-demo-room-retention-review.md",
+      "recommendation": "keep",
+      "room_id": "demo-room",
+      "severity": "low",
+      "status": "pending",
+      "trust_state": "clean"
+    }
+  ],
+  "rooms_root": "rooms",
+  "summary": {
+    "items": 2,
+    "needs_receipt": 2
+  }
+}

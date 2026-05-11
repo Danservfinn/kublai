@@ -69,3 +69,4 @@ sessions/
 kanban.db
 config/runtime-config/live/
 config/runtime-config/private/
+tools/kurultai/buildroom/.generated/
