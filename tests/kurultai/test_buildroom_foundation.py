@@ -664,3 +664,8 @@ def test_run_buildroom_cycle_completes_with_dry_run_receipt(tmp_path: Path) -> N
     assert payload["mode"] == "dry-run"
     assert payload["ok"] is True
     assert payload["step_count"] >= 6
+    assert "proposal_summary" in summary
+    assert "proposal_summary" in payload
+    assert summary["proposal_summary"]["outcome"]["opportunity_radar_candidates"] >= 1
+    assert summary["proposal_summary"]["proposals"][0]["title"] == "Buildroom Opportunity Radar v0"
+    assert summary["proposal_summary"]["proposals"][0]["summary"]
