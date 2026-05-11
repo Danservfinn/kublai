@@ -1,0 +1,46 @@
+{
+  "draft_count": 3,
+  "drafts": [
+    {
+      "body": "Candidate: Buildroom Opportunity Radar v0\nType: system-improvement\nScore: 49.9\nDisposition: buildroom-candidate\nWhy now: Kurultai has a strong Auto Build loop, but candidate selection is still less inspectable than execution.\nExpected leverage: Turns Brain artifacts into recurring ranked build intent and reduces ad hoc operator steering.\nAcceptance criteria:\n- emit JSON and markdown reports\n- score candidates explainably\n- emit dry-run Kanban drafts\n- link recommendations to source refs\n- pass tests and leakage scan",
+      "candidate_id": "e5b14f92b7ca",
+      "labels": [
+        "buildroom",
+        "opportunity-radar",
+        "system-improvement",
+        "buildroom-candidate"
+      ],
+      "priority": "high",
+      "source": "buildroom-opportunity-radar-v0",
+      "title": "Buildroom opportunity: Buildroom Opportunity Radar v0"
+    },
+    {
+      "body": "Candidate: Brain Compiler Coverage Ledger\nType: brain-compiler\nScore: 47.9\nDisposition: buildroom-candidate\nWhy now: The Brain has more durable artifacts; now it needs coverage accounting to prevent passive storage.\nExpected leverage: Enforces the invariant that memory only matters when it changes future behavior or gets a no-op receipt.\nAcceptance criteria:\n- scan queue/generated/reviews/proposals/receipts\n- identify missing dispositions\n- emit coverage report",
+      "candidate_id": "19eca945eb9b",
+      "labels": [
+        "buildroom",
+        "opportunity-radar",
+        "brain-compiler",
+        "buildroom-candidate"
+      ],
+      "priority": "high",
+      "source": "buildroom-opportunity-radar-v0",
+      "title": "Buildroom opportunity: Brain Compiler Coverage Ledger"
+    },
+    {
+      "body": "Candidate: Agent Harness Maturity Scoreboard\nType: evaluation-candidate\nScore: 46.7\nDisposition: buildroom-candidate\nWhy now: The agent-engineering research argues that agent engineering is harness engineering.\nExpected leverage: Makes agent trust and hardening gaps visible before autonomy expands.\nAcceptance criteria:\n- produce explainable maturity scores\n- surface improvement recommendations\n- integrate with Control Room",
+      "candidate_id": "05b418059610",
+      "labels": [
+        "buildroom",
+        "opportunity-radar",
+        "evaluation-candidate",
+        "buildroom-candidate"
+      ],
+      "priority": "high",
+      "source": "buildroom-opportunity-radar-v0",
+      "title": "Buildroom opportunity: Agent Harness Maturity Scoreboard"
+    }
+  ],
+  "generated_at": "2026-05-11T03:21:25Z",
+  "source": "buildroom-opportunity-radar-v0"
+}

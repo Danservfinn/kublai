@@ -10,6 +10,8 @@ import time
 from pathlib import Path
 from typing import Any
 
+from common import default_workspace_path
+
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DRAFTS = ROOT / "control-room-kanban-drafts.json"
 DEFAULT_STATE = ROOT / ".generated" / "kanban-draft-state.json"
@@ -81,7 +83,7 @@ def normalize_draft(draft: dict[str, Any]) -> dict[str, Any]:
         "assignee": str(draft.get("assignee") or metadata.get("assignee") or "kublai"),
         "priority": coerce_priority(draft.get("priority") or metadata.get("priority"), severity),
         "workspace_kind": str(draft.get("workspace_kind") or "dir"),
-        "workspace_path": str(draft.get("workspace_path") or "${KURULTAI_HOME}"),
+        "workspace_path": str(draft.get("workspace_path") or default_workspace_path()),
         "idempotency_key": f"buildroom-control-room:{key}",
         "metadata": {**metadata, "dedupe_key": key, "room_id": room_id, "severity": severity, "reason": reason},
     }

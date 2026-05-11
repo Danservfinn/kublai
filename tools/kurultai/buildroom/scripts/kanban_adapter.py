@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from common import load_json, resolve_room_path, utc_now, write_json
+from common import default_workspace_path, load_json, resolve_room_path, utc_now, write_json
 
 
 def _kanban_parent_ids(task_refs: list[Any]) -> list[str]:
@@ -85,7 +85,7 @@ def build_task_packet(room: Path) -> dict[str, Any]:
         "body": body,
         "parents": _kanban_parent_ids(task_refs),
         "workspace_kind": "dir",
-        "workspace_path": "${KURULTAI_HOME}",
+        "workspace_path": default_workspace_path(),
         "idempotency_key": f"buildroom:{build_id}",
         "metadata": {
             "room_id": room.name,

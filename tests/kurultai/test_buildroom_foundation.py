@@ -176,6 +176,9 @@ def test_approved_build_plan_creates_kanban_task_packet_with_parent_refs(tmp_pat
     assert packet["title"] == "buildroom: Buildroom foundation demo"
     assert packet["assignee"] == "chagatai"
     assert packet["parents"] == ["t_parent_one", "t_parent_two"]
+    assert packet["workspace_kind"] == "dir"
+    assert Path(packet["workspace_path"]).is_absolute()
+    assert "${" not in packet["workspace_path"]
     assert packet["idempotency_key"] == "buildroom:build-buildroom-foundation-demo"
     assert packet["metadata"]["build_id"] == "build-buildroom-foundation-demo"
     assert "Allowed paths:" in packet["body"]
@@ -267,6 +270,9 @@ def test_independent_qa_task_packet_uses_build_plan_and_receipt_parent(tmp_path:
     assert packet["title"] == "buildroom-qa: Buildroom foundation demo"
     assert packet["assignee"] == "ogedei"
     assert packet["parents"] == ["t_build123"]
+    assert packet["workspace_kind"] == "dir"
+    assert Path(packet["workspace_path"]).is_absolute()
+    assert "${" not in packet["workspace_path"]
     assert packet["idempotency_key"] == "buildroom-qa:build-buildroom-foundation-demo"
     assert packet["metadata"]["build_id"] == "build-buildroom-foundation-demo"
     assert packet["metadata"]["independent_of"] == "chagatai"
@@ -539,6 +545,10 @@ def test_apply_kanban_drafts_dry_run_dedupes(tmp_path: Path) -> None:
     assert payload["summary"]["drafts"] == 2
     assert payload["summary"]["unique"] == 1
     assert payload["summary"]["new"] == 1
+    task = payload["tasks"][0]
+    assert task["workspace_kind"] == "dir"
+    assert Path(task["workspace_path"]).is_absolute()
+    assert "${" not in task["workspace_path"]
 
 
 def test_apply_kanban_drafts_apply_is_idempotent(tmp_path: Path) -> None:
@@ -559,6 +569,10 @@ def test_apply_kanban_drafts_apply_is_idempotent(tmp_path: Path) -> None:
     assert second.returncode == 0, second.stdout
     con = sqlite3.connect(db)
     assert con.execute("select count(*) from tasks").fetchone()[0] == 1
+    workspace_kind, workspace_path = con.execute("select workspace_kind, workspace_path from tasks").fetchone()
+    assert workspace_kind == "dir"
+    assert Path(workspace_path).is_absolute()
+    assert "${" not in workspace_path
     assert con.execute("select count(*) from task_events").fetchone()[0] == 1
     con.close()
 
@@ -583,3 +597,70 @@ def test_buildroom_healthcheck_quick_mode_passes() -> None:
     result = run_script("tools/kurultai/buildroom/scripts/buildroom_healthcheck.py", "--skip-pytest")
     assert result.returncode == 0, result.stdout
     assert "buildroom healthcheck: PASS" in result.stdout
+
+
+
+def test_opportunity_radar_generates_ranked_candidates(tmp_path: Path) -> None:
+    brain = tmp_path / "brain"
+    (brain / "docs" / "designs").mkdir(parents=True)
+    (brain / "docs" / "designs" / "radar.md").write_text(
+        "# Opportunity Radar\n\nAuto Think should rank what should we build next.\n",
+        encoding="utf-8",
+    )
+    json_out = tmp_path / "opportunity-radar.json"
+    md_out = tmp_path / "opportunity-radar.md"
+    drafts_out = tmp_path / "drafts.json"
+    result = subprocess.run(
+        [
+            "python3",
+            str(BUILDROOM / "scripts" / "opportunity_radar.py"),
+            "--brain-root",
+            str(brain),
+            "--buildroom-root",
+            str(BUILDROOM),
+            "--json-output",
+            str(json_out),
+            "--markdown-output",
+            str(md_out),
+            "--kanban-drafts-output",
+            str(drafts_out),
+            "--json",
+        ],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        check=True,
+    )
+    payload = json.loads(json_out.read_text())
+    assert payload["recommended_next_action"] == "Buildroom Opportunity Radar v0"
+    assert payload["candidates"][0]["scores"]["total"] >= 38
+    assert "Buildroom Opportunity Radar" in md_out.read_text()
+    drafts = json.loads(drafts_out.read_text())
+    assert drafts["draft_count"] >= 1
+    assert "candidate_count" in result.stdout
+
+
+def test_run_buildroom_cycle_completes_with_dry_run_receipt(tmp_path: Path) -> None:
+    receipt = tmp_path / "cycle-receipt.json"
+    result = subprocess.run(
+        [
+            "python3",
+            str(BUILDROOM / "scripts" / "run_buildroom_cycle.py"),
+            "--skip-pytest",
+            "--receipt-output",
+            str(receipt),
+            "--json",
+        ],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        check=True,
+    )
+    summary = json.loads(result.stdout)
+    payload = json.loads(receipt.read_text())
+    assert summary["ok"] is True
+    assert payload["mode"] == "dry-run"
+    assert payload["ok"] is True
+    assert payload["step_count"] >= 6

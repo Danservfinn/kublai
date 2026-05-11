@@ -1,0 +1,603 @@
+{
+  "candidates": [
+    {
+      "acceptance_criteria": [
+        "emit JSON and markdown reports",
+        "score candidates explainably",
+        "emit dry-run Kanban drafts",
+        "link recommendations to source refs",
+        "pass tests and leakage scan"
+      ],
+      "candidate_type": "system-improvement",
+      "dependencies": [
+        "Brain artifacts",
+        "buildroom Control Room outputs"
+      ],
+      "expected_leverage": "Turns Brain artifacts into recurring ranked build intent and reduces ad hoc operator steering.",
+      "explainability": {
+        "counterarguments": [
+          "Could create noisy recommendations if reports are not capped",
+          "Scoring must not replace verified user value"
+        ],
+        "top_negative_factors": [
+          "requires calibration against outcomes"
+        ],
+        "top_positive_factors": [
+          "compounds future agent behavior",
+          "local-first and reversible",
+          "8 supporting source artifacts"
+        ]
+      },
+      "id": "e5b14f92b7ca",
+      "proposed_artifacts": [],
+      "recommended_disposition": "buildroom-candidate",
+      "risks": [
+        "scope creep",
+        "duplicate work",
+        "weak outcome feedback"
+      ],
+      "scores": {
+        "compounding_value": 5,
+        "dependency_readiness": 5,
+        "future_behavior_improvement": 5,
+        "risk_reversibility": 5,
+        "total": 49.9,
+        "tractability": 4,
+        "urgency_freshness": 4,
+        "user_leverage": 5,
+        "verification_clarity": 4
+      },
+      "source_evidence": [
+        {
+          "hit_count": 4,
+          "kind": "docs/designs",
+          "ref": "brain/docs/designs/2026-05-10-buildroom-opportunity-radar-intelligent-design.md",
+          "title": "Buildroom Opportunity Radar intelligent design and SWOT"
+        },
+        {
+          "hit_count": 2,
+          "kind": "docs/proposals",
+          "ref": "brain/docs/proposals/2026-05-11-build-proposals-from-compiled-research.md",
+          "title": "Build proposals from compiled Brain research"
+        },
+        {
+          "hit_count": 1,
+          "kind": "docs/plans",
+          "ref": "brain/docs/plans/2026-05-10-opportunity-radar-and-buildroom-cycle-implementation-plan.md",
+          "title": "Opportunity Radar and buildroom cycle command implementation plan"
+        },
+        {
+          "hit_count": 1,
+          "kind": "generated",
+          "ref": "brain/generated/2026-05-10-gkisokay-auto-think-auto-build-synthesis.md",
+          "title": "Graeme gkisokay Auto Think Auto Build Synthesis"
+        },
+        {
+          "hit_count": 1,
+          "kind": "generated",
+          "ref": "brain/generated/reviews/2026-05-10-gkisokay-auto-think-auto-build-review.md",
+          "title": "Review - Graeme gkisokay Auto Think Auto Build Synthesis"
+        },
+        {
+          "hit_count": 1,
+          "kind": "queue",
+          "ref": "brain/queue/2026-05-10-gkisokay-hermes-auto-think-auto-build.md",
+          "title": "Graeme gkisokay Hermes Auto Think Auto Build Research Packet"
+        },
+        {
+          "hit_count": 1,
+          "kind": "receipts",
+          "ref": "brain/receipts/kurultai/2026-05-10-gkisokay-auto-think-auto-build-research-to-brain.md",
+          "title": "Receipt - gkisokay Auto Think Auto Build Research Compiled Into Brain"
+        },
+        {
+          "hit_count": 1,
+          "kind": "receipts",
+          "ref": "brain/receipts/kurultai/2026-05-10-kurultai-buildroom-contract-slice-implemented.md",
+          "title": "Receipt - Kurultai Buildroom Contract Slice Implemented"
+        }
+      ],
+      "source_refs": [
+        "brain/docs/designs/2026-05-10-buildroom-opportunity-radar-intelligent-design.md",
+        "brain/docs/proposals/2026-05-11-build-proposals-from-compiled-research.md",
+        "brain/docs/plans/2026-05-10-opportunity-radar-and-buildroom-cycle-implementation-plan.md",
+        "brain/generated/2026-05-10-gkisokay-auto-think-auto-build-synthesis.md",
+        "brain/generated/reviews/2026-05-10-gkisokay-auto-think-auto-build-review.md",
+        "brain/queue/2026-05-10-gkisokay-hermes-auto-think-auto-build.md",
+        "brain/receipts/kurultai/2026-05-10-gkisokay-auto-think-auto-build-research-to-brain.md",
+        "brain/receipts/kurultai/2026-05-10-kurultai-buildroom-contract-slice-implemented.md"
+      ],
+      "summary": "Build a local-first strategy layer that ranks next buildroom candidates from Brain and buildroom evidence.",
+      "title": "Buildroom Opportunity Radar v0",
+      "why_now": "Kurultai has a strong Auto Build loop, but candidate selection is still less inspectable than execution."
+    },
+    {
+      "acceptance_criteria": [
+        "scan queue/generated/reviews/proposals/receipts",
+        "identify missing dispositions",
+        "emit coverage report"
+      ],
+      "candidate_type": "brain-compiler",
+      "dependencies": [
+        "Brain artifacts",
+        "buildroom Control Room outputs"
+      ],
+      "expected_leverage": "Enforces the invariant that memory only matters when it changes future behavior or gets a no-op receipt.",
+      "explainability": {
+        "counterarguments": [
+          "Could create noisy recommendations if reports are not capped",
+          "Scoring must not replace verified user value"
+        ],
+        "top_negative_factors": [
+          "requires calibration against outcomes"
+        ],
+        "top_positive_factors": [
+          "compounds future agent behavior",
+          "local-first and reversible",
+          "8 supporting source artifacts"
+        ]
+      },
+      "id": "19eca945eb9b",
+      "proposed_artifacts": [],
+      "recommended_disposition": "buildroom-candidate",
+      "risks": [
+        "scope creep",
+        "duplicate work",
+        "weak outcome feedback"
+      ],
+      "scores": {
+        "compounding_value": 5,
+        "dependency_readiness": 4,
+        "future_behavior_improvement": 5,
+        "risk_reversibility": 5,
+        "total": 47.9,
+        "tractability": 4,
+        "urgency_freshness": 3,
+        "user_leverage": 4,
+        "verification_clarity": 5
+      },
+      "source_evidence": [
+        {
+          "hit_count": 5,
+          "kind": "docs/proposals",
+          "ref": "brain/docs/proposals/2026-05-11-build-proposals-from-compiled-research.md",
+          "title": "Build proposals from compiled Brain research"
+        },
+        {
+          "hit_count": 4,
+          "kind": "docs/designs",
+          "ref": "brain/docs/designs/2026-05-10-buildroom-opportunity-radar-intelligent-design.md",
+          "title": "Buildroom Opportunity Radar intelligent design and SWOT"
+        },
+        {
+          "hit_count": 3,
+          "kind": "docs/kurultai",
+          "ref": "brain/docs/kurultai/command-doctrine-v1.md",
+          "title": "Kurultai Command Doctrine v1"
+        },
+        {
+          "hit_count": 3,
+          "kind": "docs/plans",
+          "ref": "brain/docs/plans/2026-05-10-entangled-agent-capability-compiler-implementation-plan.md",
+          "title": "Entangled Agent Capability Compiler Implementation Plan"
+        },
+        {
+          "hit_count": 3,
+          "kind": "docs/plans",
+          "ref": "brain/docs/plans/2026-05-10-kurultai-learn-retro-command-doctrine-vertical-slice.md",
+          "title": "Kurultai Learn/Retro Command Doctrine Vertical Slice"
+        },
+        {
+          "hit_count": 2,
+          "kind": "docs/plans",
+          "ref": "brain/docs/plans/2026-05-10-memory-is-leverage-doctrine-implementation-plan.md",
+          "title": "Memory Is Leverage \u2014 Doctrine Implementation Plan"
+        },
+        {
+          "hit_count": 2,
+          "kind": "generated",
+          "ref": "brain/generated/2026-05-10-gkisokay-auto-think-auto-build-synthesis.md",
+          "title": "Graeme gkisokay Auto Think Auto Build Synthesis"
+        },
+        {
+          "hit_count": 1,
+          "kind": "docs/kurultai",
+          "ref": "brain/docs/kurultai/agent-operable-brain-os.md",
+          "title": "Agent-operable Brain OS"
+        }
+      ],
+      "source_refs": [
+        "brain/docs/proposals/2026-05-11-build-proposals-from-compiled-research.md",
+        "brain/docs/designs/2026-05-10-buildroom-opportunity-radar-intelligent-design.md",
+        "brain/docs/kurultai/command-doctrine-v1.md",
+        "brain/docs/plans/2026-05-10-entangled-agent-capability-compiler-implementation-plan.md",
+        "brain/docs/plans/2026-05-10-kurultai-learn-retro-command-doctrine-vertical-slice.md",
+        "brain/docs/plans/2026-05-10-memory-is-leverage-doctrine-implementation-plan.md",
+        "brain/generated/2026-05-10-gkisokay-auto-think-auto-build-synthesis.md",
+        "brain/docs/kurultai/agent-operable-brain-os.md"
+      ],
+      "summary": "Report which meaningful sources changed behavior and which still need synthesis, skill, Kanban, receipt, or no-op disposition.",
+      "title": "Brain Compiler Coverage Ledger",
+      "why_now": "The Brain has more durable artifacts; now it needs coverage accounting to prevent passive storage."
+    },
+    {
+      "acceptance_criteria": [
+        "produce explainable maturity scores",
+        "surface improvement recommendations",
+        "integrate with Control Room"
+      ],
+      "candidate_type": "evaluation-candidate",
+      "dependencies": [
+        "Brain artifacts",
+        "buildroom Control Room outputs"
+      ],
+      "expected_leverage": "Makes agent trust and hardening gaps visible before autonomy expands.",
+      "explainability": {
+        "counterarguments": [
+          "Could create noisy recommendations if reports are not capped",
+          "Scoring must not replace verified user value"
+        ],
+        "top_negative_factors": [
+          "requires calibration against outcomes"
+        ],
+        "top_positive_factors": [
+          "compounds future agent behavior",
+          "local-first and reversible",
+          "8 supporting source artifacts"
+        ]
+      },
+      "id": "05b418059610",
+      "proposed_artifacts": [],
+      "recommended_disposition": "buildroom-candidate",
+      "risks": [
+        "scope creep",
+        "duplicate work",
+        "weak outcome feedback"
+      ],
+      "scores": {
+        "compounding_value": 5,
+        "dependency_readiness": 4,
+        "future_behavior_improvement": 5,
+        "risk_reversibility": 5,
+        "total": 46.7,
+        "tractability": 4,
+        "urgency_freshness": 3,
+        "user_leverage": 4,
+        "verification_clarity": 4
+      },
+      "source_evidence": [
+        {
+          "hit_count": 6,
+          "kind": "docs/proposals",
+          "ref": "brain/docs/proposals/2026-05-11-build-proposals-from-compiled-research.md",
+          "title": "Build proposals from compiled Brain research"
+        },
+        {
+          "hit_count": 5,
+          "kind": "generated",
+          "ref": "brain/generated/2026-05-11-av1dlive-agent-engineering-roadmap-synthesis.md",
+          "title": "Synthesis \u2014 Avid 2026 AI Agent Engineering Roadmap"
+        },
+        {
+          "hit_count": 5,
+          "kind": "generated",
+          "ref": "brain/generated/reviews/2026-05-11-av1dlive-agent-engineering-roadmap-review.md",
+          "title": "Review \u2014 Avid 2026 AI Agent Engineering Roadmap"
+        },
+        {
+          "hit_count": 4,
+          "kind": "docs/plans",
+          "ref": "brain/docs/plans/2026-04-21-parse-post-training-kickoff-prompt.md",
+          "title": "Kickoff prompt \u2014 Parse post-training deployment + narrative push"
+        },
+        {
+          "hit_count": 4,
+          "kind": "queue",
+          "ref": "brain/queue/2026-05-11-av1dlive-agent-engineering-roadmap.md",
+          "title": "Avid / @Av1dlive \u2014 2026 AI Agent Engineering Roadmap"
+        },
+        {
+          "hit_count": 4,
+          "kind": "receipts",
+          "ref": "brain/receipts/kurultai/2026-05-11-av1dlive-agent-engineering-roadmap-research.md",
+          "title": "Receipt \u2014 Avid 2026 AI Agent Engineering Roadmap Research"
+        },
+        {
+          "hit_count": 3,
+          "kind": "docs/plans",
+          "ref": "brain/docs/plans/2026-04-21-parse-soft-launch-option-a-kickoff-prompt.md",
+          "title": "Kickoff prompt \u2014 Parse for Agents soft launch (Option A)"
+        },
+        {
+          "hit_count": 3,
+          "kind": "docs/plans",
+          "ref": "brain/docs/plans/2026-04-22-meta-harness-option-b-design-v2.md",
+          "title": "2026-04-22-meta-harness-option-b-design-v2"
+        }
+      ],
+      "source_refs": [
+        "brain/docs/proposals/2026-05-11-build-proposals-from-compiled-research.md",
+        "brain/generated/2026-05-11-av1dlive-agent-engineering-roadmap-synthesis.md",
+        "brain/generated/reviews/2026-05-11-av1dlive-agent-engineering-roadmap-review.md",
+        "brain/docs/plans/2026-04-21-parse-post-training-kickoff-prompt.md",
+        "brain/queue/2026-05-11-av1dlive-agent-engineering-roadmap.md",
+        "brain/receipts/kurultai/2026-05-11-av1dlive-agent-engineering-roadmap-research.md",
+        "brain/docs/plans/2026-04-21-parse-soft-launch-option-a-kickoff-prompt.md",
+        "brain/docs/plans/2026-04-22-meta-harness-option-b-design-v2.md"
+      ],
+      "summary": "Score projects, agents, and buildrooms against harness maturity primitives.",
+      "title": "Agent Harness Maturity Scoreboard",
+      "why_now": "The agent-engineering research argues that agent engineering is harness engineering."
+    },
+    {
+      "acceptance_criteria": [
+        "extract claims/evidence",
+        "scan public/private boundary",
+        "draft publish/no-op recommendation"
+      ],
+      "candidate_type": "content-candidate",
+      "dependencies": [
+        "Brain artifacts",
+        "buildroom Control Room outputs"
+      ],
+      "expected_leverage": "Turns proven internal work into public learning when safe.",
+      "explainability": {
+        "counterarguments": [
+          "Could create noisy recommendations if reports are not capped",
+          "Scoring must not replace verified user value"
+        ],
+        "top_negative_factors": [
+          "requires calibration against outcomes"
+        ],
+        "top_positive_factors": [
+          "compounds future agent behavior",
+          "local-first and reversible",
+          "8 supporting source artifacts"
+        ]
+      },
+      "id": "cad7ee042c11",
+      "proposed_artifacts": [],
+      "recommended_disposition": "watch",
+      "risks": [
+        "scope creep",
+        "duplicate work",
+        "weak outcome feedback"
+      ],
+      "scores": {
+        "compounding_value": 4,
+        "dependency_readiness": 3,
+        "future_behavior_improvement": 3,
+        "risk_reversibility": 4,
+        "total": 35.0,
+        "tractability": 3,
+        "urgency_freshness": 2,
+        "user_leverage": 3,
+        "verification_clarity": 3
+      },
+      "source_evidence": [
+        {
+          "hit_count": 5,
+          "kind": "docs/proposals",
+          "ref": "brain/docs/proposals/2026-05-11-build-proposals-from-compiled-research.md",
+          "title": "Build proposals from compiled Brain research"
+        },
+        {
+          "hit_count": 2,
+          "kind": "docs/plans",
+          "ref": "brain/docs/plans/2026-04-27-kublai-brain-v4-merged-design.md",
+          "title": "v4 Sketch (final): v3 backend + claude-obsidian-style human surface + graphify as the corpus extractor + Karpathy second-brain patterns + private/public tier carve-out + JARVIS content production + Research Skill Graph"
+        },
+        {
+          "hit_count": 2,
+          "kind": "docs/plans",
+          "ref": "brain/docs/plans/2026-05-02-llm-survivor-paid-multiplayer-design.md",
+          "title": "LLM Survivor Paid Multiplayer Design"
+        },
+        {
+          "hit_count": 2,
+          "kind": "docs/proposals",
+          "ref": "brain/docs/proposals/2026-05-10-agent-operable-brain-and-bounty-proof-loops.md",
+          "title": "Agent-operable Brain OS and bounty/proof loop proposals"
+        },
+        {
+          "hit_count": 2,
+          "kind": "queue",
+          "ref": "brain/queue/2026-05-10-cyrilxbt-obsidian-business-os.md",
+          "title": "CyrilXBT Obsidian business operating system signal"
+        },
+        {
+          "hit_count": 2,
+          "kind": "queue",
+          "ref": "brain/queue/2026-05-10-gkisokay-hermes-auto-think-auto-build.md",
+          "title": "Graeme gkisokay Hermes Auto Think Auto Build Research Packet"
+        },
+        {
+          "hit_count": 2,
+          "kind": "queue",
+          "ref": "brain/queue/2026-05-11-av1dlive-agent-engineering-roadmap.md",
+          "title": "Avid / @Av1dlive \u2014 2026 AI Agent Engineering Roadmap"
+        },
+        {
+          "hit_count": 2,
+          "kind": "receipts",
+          "ref": "brain/receipts/kurultai/2026-05-11-av1dlive-agent-engineering-roadmap-research.md",
+          "title": "Receipt \u2014 Avid 2026 AI Agent Engineering Roadmap Research"
+        }
+      ],
+      "source_refs": [
+        "brain/docs/proposals/2026-05-11-build-proposals-from-compiled-research.md",
+        "brain/docs/plans/2026-04-27-kublai-brain-v4-merged-design.md",
+        "brain/docs/plans/2026-05-02-llm-survivor-paid-multiplayer-design.md",
+        "brain/docs/proposals/2026-05-10-agent-operable-brain-and-bounty-proof-loops.md",
+        "brain/queue/2026-05-10-cyrilxbt-obsidian-business-os.md",
+        "brain/queue/2026-05-10-gkisokay-hermes-auto-think-auto-build.md",
+        "brain/queue/2026-05-11-av1dlive-agent-engineering-roadmap.md",
+        "brain/receipts/kurultai/2026-05-11-av1dlive-agent-engineering-roadmap-research.md"
+      ],
+      "summary": "Convert completed buildrooms into evidence-backed content candidates.",
+      "title": "Buildroom-to-Content OS Bridge",
+      "why_now": "Buildrooms are starting to produce reusable doctrine and receipts."
+    },
+    {
+      "acceptance_criteria": [
+        "evaluate five opportunities on paper",
+        "classify proceed/no-op/needs approval",
+        "perform no external actions"
+      ],
+      "candidate_type": "external-opportunity",
+      "dependencies": [
+        "Brain artifacts",
+        "buildroom Control Room outputs"
+      ],
+      "expected_leverage": "Creates a safe path to evaluate economic opportunities without uncontrolled commitments.",
+      "explainability": {
+        "counterarguments": [
+          "Could create noisy recommendations if reports are not capped",
+          "Scoring must not replace verified user value"
+        ],
+        "top_negative_factors": [
+          "external-side-effect-approval-required"
+        ],
+        "top_positive_factors": [
+          "compounds future agent behavior",
+          "local-first and reversible",
+          "8 supporting source artifacts"
+        ]
+      },
+      "id": "ea047f2d69ea",
+      "proposed_artifacts": [],
+      "recommended_disposition": "needs-human-approval",
+      "risks": [
+        "external-side-effect-approval-required"
+      ],
+      "scores": {
+        "compounding_value": 4,
+        "dependency_readiness": 3,
+        "future_behavior_improvement": 3,
+        "risk_reversibility": 2,
+        "total": 32.6,
+        "tractability": 3,
+        "urgency_freshness": 2,
+        "user_leverage": 3,
+        "verification_clarity": 3
+      },
+      "source_evidence": [
+        {
+          "hit_count": 5,
+          "kind": "docs/proposals",
+          "ref": "brain/docs/proposals/2026-05-10-agent-operable-brain-and-bounty-proof-loops.md",
+          "title": "Agent-operable Brain OS and bounty/proof loop proposals"
+        },
+        {
+          "hit_count": 3,
+          "kind": "docs/proposals",
+          "ref": "brain/docs/proposals/2026-05-11-build-proposals-from-compiled-research.md",
+          "title": "Build proposals from compiled Brain research"
+        },
+        {
+          "hit_count": 2,
+          "kind": "docs/designs",
+          "ref": "brain/docs/designs/2026-05-10-buildroom-opportunity-radar-intelligent-design.md",
+          "title": "Buildroom Opportunity Radar intelligent design and SWOT"
+        },
+        {
+          "hit_count": 2,
+          "kind": "docs/plans",
+          "ref": "brain/docs/plans/2026-05-02-turo-cybertruck-ops-rebuild-plan.md",
+          "title": "Turo Cybertruck Ops Functional Metrics Plan"
+        },
+        {
+          "hit_count": 2,
+          "kind": "receipts",
+          "ref": "brain/receipts/kurultai/2026-05-10-agent-operable-brain-os-vertical-slice.md",
+          "title": "Agent-operable Brain OS vertical slice receipt"
+        },
+        {
+          "hit_count": 1,
+          "kind": "docs/kurultai",
+          "ref": "brain/docs/kurultai/agent-operable-brain-os.md",
+          "title": "Agent-operable Brain OS"
+        },
+        {
+          "hit_count": 1,
+          "kind": "docs/plans",
+          "ref": "brain/docs/plans/2026-04-21-parse-soft-launch-option-a-kickoff-prompt.md",
+          "title": "Kickoff prompt \u2014 Parse for Agents soft launch (Option A)"
+        },
+        {
+          "hit_count": 1,
+          "kind": "docs/plans",
+          "ref": "brain/docs/plans/2026-04-21-parse-soft-launch-option-a.md",
+          "title": "Parse for Agents \u2014 Soft-Launch Plan (Option A)"
+        }
+      ],
+      "source_refs": [
+        "brain/docs/proposals/2026-05-10-agent-operable-brain-and-bounty-proof-loops.md",
+        "brain/docs/proposals/2026-05-11-build-proposals-from-compiled-research.md",
+        "brain/docs/designs/2026-05-10-buildroom-opportunity-radar-intelligent-design.md",
+        "brain/docs/plans/2026-05-02-turo-cybertruck-ops-rebuild-plan.md",
+        "brain/receipts/kurultai/2026-05-10-agent-operable-brain-os-vertical-slice.md",
+        "brain/docs/kurultai/agent-operable-brain-os.md",
+        "brain/docs/plans/2026-04-21-parse-soft-launch-option-a-kickoff-prompt.md",
+        "brain/docs/plans/2026-04-21-parse-soft-launch-option-a.md"
+      ],
+      "summary": "Design a paper-only workflow for evaluating external opportunities without external side effects.",
+      "title": "Paper-only Bounty Proof Loop",
+      "why_now": "There is upside, but reputation and payment surfaces require stronger proof gates first."
+    }
+  ],
+  "generated_at": "2026-05-11T03:21:25Z",
+  "input_summary": {
+    "attention_count": 3,
+    "brain_artifact_count": 60,
+    "buildroom_count": 2,
+    "control_room_present": true,
+    "kanban_draft_count": 2
+  },
+  "kanban_drafts": [
+    {
+      "body": "Candidate: Buildroom Opportunity Radar v0\nType: system-improvement\nScore: 49.9\nDisposition: buildroom-candidate\nWhy now: Kurultai has a strong Auto Build loop, but candidate selection is still less inspectable than execution.\nExpected leverage: Turns Brain artifacts into recurring ranked build intent and reduces ad hoc operator steering.\nAcceptance criteria:\n- emit JSON and markdown reports\n- score candidates explainably\n- emit dry-run Kanban drafts\n- link recommendations to source refs\n- pass tests and leakage scan",
+      "candidate_id": "e5b14f92b7ca",
+      "labels": [
+        "buildroom",
+        "opportunity-radar",
+        "system-improvement",
+        "buildroom-candidate"
+      ],
+      "priority": "high",
+      "source": "buildroom-opportunity-radar-v0",
+      "title": "Buildroom opportunity: Buildroom Opportunity Radar v0"
+    },
+    {
+      "body": "Candidate: Brain Compiler Coverage Ledger\nType: brain-compiler\nScore: 47.9\nDisposition: buildroom-candidate\nWhy now: The Brain has more durable artifacts; now it needs coverage accounting to prevent passive storage.\nExpected leverage: Enforces the invariant that memory only matters when it changes future behavior or gets a no-op receipt.\nAcceptance criteria:\n- scan queue/generated/reviews/proposals/receipts\n- identify missing dispositions\n- emit coverage report",
+      "candidate_id": "19eca945eb9b",
+      "labels": [
+        "buildroom",
+        "opportunity-radar",
+        "brain-compiler",
+        "buildroom-candidate"
+      ],
+      "priority": "high",
+      "source": "buildroom-opportunity-radar-v0",
+      "title": "Buildroom opportunity: Brain Compiler Coverage Ledger"
+    },
+    {
+      "body": "Candidate: Agent Harness Maturity Scoreboard\nType: evaluation-candidate\nScore: 46.7\nDisposition: buildroom-candidate\nWhy now: The agent-engineering research argues that agent engineering is harness engineering.\nExpected leverage: Makes agent trust and hardening gaps visible before autonomy expands.\nAcceptance criteria:\n- produce explainable maturity scores\n- surface improvement recommendations\n- integrate with Control Room",
+      "candidate_id": "05b418059610",
+      "labels": [
+        "buildroom",
+        "opportunity-radar",
+        "evaluation-candidate",
+        "buildroom-candidate"
+      ],
+      "priority": "high",
+      "source": "buildroom-opportunity-radar-v0",
+      "title": "Buildroom opportunity: Agent Harness Maturity Scoreboard"
+    }
+  ],
+  "mode": "dry-run",
+  "recommended_next_action": "Buildroom Opportunity Radar v0",
+  "rejected": [],
+  "schema_version": "0.1.0",
+  "warnings": []
+}

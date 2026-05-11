@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import shutil
 from datetime import datetime, timezone
@@ -28,6 +29,13 @@ ABSOLUTE_PRIVATE_PATH = re.compile(r"/(Users|home)/[^\s\"']+")
 
 def utc_now() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+
+def default_workspace_path() -> str:
+    configured = os.environ.get("KURULTAI_HOME", "").strip()
+    if configured:
+        return str(Path(configured).expanduser().resolve())
+    return str(BUILDROOM_ROOT.parents[2].resolve())
 
 def load_json(path: Path) -> Any:
     with path.open("r", encoding="utf-8") as handle: return json.load(handle)

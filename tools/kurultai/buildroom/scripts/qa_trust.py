@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from common import load_json, resolve_room_path, utc_now, write_json
+from common import default_workspace_path, load_json, resolve_room_path, utc_now, write_json
 
 
 def _as_list(value: Any) -> list[Any]:
@@ -97,7 +97,7 @@ def build_qa_packet(room: Path) -> dict[str, Any]:
         "body": body,
         "parents": [parent] if parent else [],
         "workspace_kind": "dir",
-        "workspace_path": "${KURULTAI_HOME}",
+        "workspace_path": default_workspace_path(),
         "idempotency_key": f"buildroom-qa:{build_id}",
         "metadata": {
             "room_id": room.name,
